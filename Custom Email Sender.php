@@ -1,9 +1,8 @@
 <?php
 /*
 Plugin Name: Custom Email Sender
-Description: A simple plugin to send emails to the admin.
-Version: 1.0
-Author: Your Name
+Description: A simple plugin to send emails.
+
 */
 
 // Enqueue necessary scripts and styles
