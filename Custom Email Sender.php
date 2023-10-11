@@ -1,13 +1,16 @@
 <?php
 /*
 Plugin Name: Custom Email Sender
-Description: A simple plugin to send emails.
-
+Description: A simple plugin to send emails to the admin.
+Version: 1.0
+Author: Your Name
 */
 
 // Enqueue necessary scripts and styles
 function custom_email_sender_enqueue_scripts() {
     wp_enqueue_script('jquery');
+    
+    wp_enqueue_style('custom-email-sender-css', plugins_url('custom-email-sender.css', __FILE__));
 }
 add_action('wp_enqueue_scripts', 'custom_email_sender_enqueue_scripts');
 
@@ -19,15 +22,23 @@ function custom_email_sender_form_shortcode() {
         $sender_email = sanitize_email($_POST['sender-email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'උදව්@ඉතැපැල්.ලංකා';
-        $headers = array('Content-Type: text/html; charset=UTF-8');
+        $to = 'theekshanademo@gmail.com';
+        // Replace with your desired non-Latin recipient email address
         
+        // Convert the recipient email address to UTF-8 and format it properly
+       //$to_encoded = '=?UTF-8?B?' . base64_encode($to) . '?=';
 
-        //$admin_email = get_option('admin_email');
+        $to_encoded = mb_encode_mimeheader($sender_email, 'UTF-8', 'B');
+        
+       $headers = array(
+            'Content-Type: text/html; charset=UTF-8',
+            'From: ' . $sender_email,
+        );
 
         // Send the email
-        // $sent = wp_mail($admin_email, $subject, $message, "From: $sender_email");
-        $sent = wp_mail($to, $subject, $message, $headers, "From: $sender_email");
+        // $sent = wp_mail($to_encoded, $subject, $message, $headers);
+         $sent = wp_mail($to, $subject, $message, $headers);
+
 
         if ($sent) {
             echo '<div class="email-success">Email sent successfully!</div>';
@@ -40,9 +51,9 @@ function custom_email_sender_form_shortcode() {
     ?>
     <div class="email-form">
         <h2>Send an Email</h2>
-        <form method="post">
+        <form method="post" accept-charset="UTF-8">
             <label for="sender-email">Your Email:</label>
-            <input type="email" name="sender-email" required><br>
+            <input type="text" name="sender-email"  required><br>
 
             <label for="subject">Subject:</label>
             <input type="text" name="subject" required><br>
