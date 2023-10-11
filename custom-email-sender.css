@@ -1,0 +1,77 @@
+/* custom-email-sender.css */
+.email-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+.email-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.email-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.email-form input[type="text"],
+.email-form input[type="submit"],
+.email-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.email-form input[type="submit"] {
+    background-color: #0073e6;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.email-form input[type="submit"]:hover {
+    background-color: #0050a6;
+}
+
+.email-success, .email-error {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.email-success {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.email-error {
+    background-color: #f44336;
+    color: #fff;
+}
+
+/* Styles for email success message */
+.email-success {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Styles for email error message */
+.email-error {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}
