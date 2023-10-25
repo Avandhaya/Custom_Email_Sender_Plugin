@@ -23,7 +23,7 @@ function custom_email_sender_form_shortcode() {
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'theekshana.tharushi99@gmail.com';
+        $to = 'llthelpcenter@gmail.com';
         // Replace with your desired non-Latin recipient email address
         
         // Convert the recipient email address to UTF-8 and format it properly
