@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Custom Email Sender
-Description: A simple plugin to send emails to the admin.
+Description: Non-Latin Support Mail Plugin
 Version: 1.0
 Author: Your Name
 */
