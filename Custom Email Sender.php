@@ -19,26 +19,39 @@ function custom_email_sender_form_shortcode() {
     ob_start(); // Start output buffering
 
     if (isset($_POST['custom-email-submit'])) {
-        $sender_email = sanitize_email($_POST['sender-email']);
+        $sender_name = sanitize_text_field($_POST['sender-name']);
+        $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'theekshanademo@gmail.com';
+        $to = 'theekshana.tharushi99@gmail.com';
         // Replace with your desired non-Latin recipient email address
         
         // Convert the recipient email address to UTF-8 and format it properly
        //$to_encoded = '=?UTF-8?B?' . base64_encode($to) . '?=';
 
-        $to_encoded = mb_encode_mimeheader($sender_email, 'UTF-8', 'B');
+        //$to_encoded = mb_encode_mimeheader($sender_email, 'UTF-8', 'B');
         
-       $headers = array(
+       // Use quoted-printable encoding for sender's name and email address
+       // $sender_name_encoded = quoted_printable_encode($sender_name);
+        //$sender_email_encoded = quoted_printable_encode($sender_email);
+
+        $headers = array(
             'Content-Type: text/html; charset=UTF-8',
-            'From: ' . $sender_email,
+            'From: ' . $sender_name_encoded . ' <' . $sender_email_encoded . '>',
         );
 
+       // Create the email content
+       $email_content = "Email of sender: $sender_name\n\n";
+        //$email_content .= "Sender Email Address: $message\n";
+        $email_content .= "Message:\n$message";
         // Send the email
         // $sent = wp_mail($to_encoded, $subject, $message, $headers);
-         $sent = wp_mail($to, $subject, $message, $headers);
+        
+        
+        
 
+
+        $sent = wp_mail($to, $subject, $email_content, $message, $headers);
 
         if ($sent) {
             echo '<div class="email-success">Email sent successfully!</div>';
@@ -52,8 +65,9 @@ function custom_email_sender_form_shortcode() {
     <div class="email-form">
         <h2>Send an Email</h2>
         <form method="post" accept-charset="UTF-8">
-            <label for="sender-email">Your Email:</label>
-            <input type="text" name="sender-email"  required><br>
+            <label for="sender-name">Email:</label>
+            <input type="text" name="sender-name" required><br>
+            
 
             <label for="subject">Subject:</label>
             <input type="text" name="subject" required><br>
