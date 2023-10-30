@@ -43,6 +43,7 @@ function custom_email_sender_form_shortcode() {
        // Create the email content
        $email_content = "Email of sender: $sender_name\n\n";
         //$email_content .= "Sender Email Address: $message\n";
+        $email_content .= "Name:$sender-namea\n\n";
         $email_content .= "Message:\n$message";
         // Send the email
         // $sent = wp_mail($to_encoded, $subject, $message, $headers);
@@ -63,8 +64,12 @@ function custom_email_sender_form_shortcode() {
     // Display the email form
     ?>
     <div class="email-form">
-        <h2>Send an Email</h2>
+        <h2>CONTACT US</h2>
         <form method="post" accept-charset="UTF-8">
+
+            <label for="sender-namea">Name:</label>
+            <input type="text" name="sender-namea" required><br>
+            
             <label for="sender-name">Email:</label>
             <input type="text" name="sender-name" required><br>
             
