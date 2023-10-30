@@ -15,7 +15,7 @@ function custom_email_sender_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'custom_email_sender_enqueue_scripts');
 
 // Create a shortcode to display the email form
-function custom_email_sender_form_shortcode() {
+function custom_email_sender_form_shortcode_s() {
     ob_start(); // Start output buffering
 
     if (isset($_POST['custom-email-submit'])) {
@@ -43,6 +43,7 @@ function custom_email_sender_form_shortcode() {
        // Create the email content
        $email_content = "Email of sender: $sender_name\n\n";
         //$email_content .= "Sender Email Address: $message\n";
+        $email_content .= "Name:sender-namea\n\n";
         $email_content .= "Message:\n$message";
         // Send the email
         // $sent = wp_mail($to_encoded, $subject, $message, $headers);
@@ -63,23 +64,26 @@ function custom_email_sender_form_shortcode() {
     // Display the email form
     ?>
     <div class="email-form">
-        <h2>Send an Email</h2>
+        <h2>ඔබගේ සිංහල යුනිකේත සම්බන්ධ ගැටළු අප වෙත යොමු කරන්න</h2>
         <form method="post" accept-charset="UTF-8">
-            <label for="sender-name">Email:</label>
+            <label for="sender-namea">ඔබගේ නම:</label>
+            <input type="text" name="sender-namea" required><br>
+            
+            <label for="sender-name">විද්‍යුත් තැපැල් ලිපිනය:</label>
             <input type="text" name="sender-name" required><br>
             
 
-            <label for="subject">Subject:</label>
+            <label for="subject">අදාල පණිවිඩයෙහි විෂය:</label>
             <input type="text" name="subject" required><br>
 
-            <label for="message">Message:</label>
+            <label for="message">පණිවිඩය:</label>
             <textarea name="message" rows="4" required></textarea><br>
 
-            <input type="submit" name="custom-email-submit" value="Send Email">
+            <input type="submit" name="custom-email-submit" value="විද්‍යුත් තැපැලය යොමු කරන්න">
         </form>
     </div>
     <?php
 
     return ob_get_clean(); // Return the buffered content
 }
-add_shortcode('custom_email_sender_form', 'custom_email_sender_form_shortcode');
+add_shortcode('custom_email_sender_form_s', 'custom_email_sender_form_shortcode_s');
