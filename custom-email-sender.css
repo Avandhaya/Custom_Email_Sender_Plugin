@@ -8,12 +8,13 @@
 }
 
 .email-form h2 {
-    font-size: 24px;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 
 .email-form label {
     display: block;
+    ont-size: 13px;
     font-weight: bold;
     margin-top: 10px;
 }
