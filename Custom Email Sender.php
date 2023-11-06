@@ -23,7 +23,7 @@ function custom_email_sender_form_shortcode() {
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'llthelpcenter@gmail.com';
+        $to = 'theekshana.tharushi99@gmail.com';
         // Replace with your desired non-Latin recipient email address
         
         // Convert the recipient email address to UTF-8 and format it properly
@@ -101,7 +101,7 @@ function custom_email_sender_form_shortcode_s() {
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'llthelpcenter@gmail.com';
+        $to = 'theekshana.tharushi99@gmail.com';
         // Replace with your desired non-Latin recipient email address
         
         // Convert the recipient email address to UTF-8 and format it properly
@@ -142,7 +142,7 @@ function custom_email_sender_form_shortcode_s() {
     // Display the email form
     ?>
     <div class="email-form">
-        <h2>ඔබගේ සිංහල යුනිකේත සම්බන්ධ ගැටළු අප වෙත යොමු කරන්න</h2>
+        <h4>ඔබගේ සිංහල යුනිකේත සම්බන්ධ ගැටළු අප වෙත යොමු කරන්න</h4>
         <form method="post" accept-charset="UTF-8">
             <label for="sender-namea">ඔබගේ නම:</label>
             <input type="text" name="sender-namea" required><br>
