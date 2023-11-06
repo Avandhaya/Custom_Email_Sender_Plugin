@@ -142,7 +142,7 @@ function custom_email_sender_form_shortcode_s() {
     // Display the email form
     ?>
     <div class="email-form">
-        <h4>ඔබගේ සිංහල යුනිකේත සම්බන්ධ ගැටළු අප වෙත යොමු කරන්න</h4>
+        <h2>ඔබගේ සිංහල යුනිකේත සම්බන්ධ ගැටළු අප වෙත යොමු කරන්න</h2>
         <form method="post" accept-charset="UTF-8">
             <label for="sender-namea">ඔබගේ නම:</label>
             <input type="text" name="sender-namea" required><br>
