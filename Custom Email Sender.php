@@ -20,6 +20,7 @@ function custom_email_sender_form_shortcode() {
 
     if (isset($_POST['custom-email-submit'])) {
         $sender_name = sanitize_text_field($_POST['sender-name']);
+        $sender_namea = sanitize_text_field($_POST['sender-namea']);
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
@@ -43,7 +44,7 @@ function custom_email_sender_form_shortcode() {
        // Create the email content
        $email_content = "Email of sender: $sender_name\n\n";
         //$email_content .= "Sender Email Address: $message\n";
-        $email_content .= "Name:$sender-namea\n\n";
+        $email_content .= "Name:$sender_namea\n\n";
         $email_content .= "Message:\n$message";
         // Send the email
         // $sent = wp_mail($to_encoded, $subject, $message, $headers);
@@ -98,6 +99,7 @@ function custom_email_sender_form_shortcode_s() {
 
     if (isset($_POST['custom-email-submit'])) {
         $sender_name = sanitize_text_field($_POST['sender-name']);
+        $sender_namea = sanitize_text_field($_POST['sender-namea']);
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
@@ -121,7 +123,7 @@ function custom_email_sender_form_shortcode_s() {
        // Create the email content
        $email_content = "Email of sender: $sender_name\n\n";
         //$email_content .= "Sender Email Address: $message\n";
-        $email_content .= "Name:sender-namea\n\n";
+        $email_content .= "Name:$sender_namea\n\n";
         $email_content .= "Message:\n$message";
         // Send the email
         // $sent = wp_mail($to_encoded, $subject, $message, $headers);
@@ -142,7 +144,7 @@ function custom_email_sender_form_shortcode_s() {
     // Display the email form
     ?>
     <div class="email-form">
-        <h2>ඔබගේ විමසීම් අප වෙත යොමු කරන්න</h2>
+        <h4>ඔබගේ විමසීම් අප වෙත යොමු කරන්න</h4>
         <form method="post" accept-charset="UTF-8">
             <label for="sender-namea">ඔබගේ නම:</label>
             <input type="text" name="sender-namea" required><br>
