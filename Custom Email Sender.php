@@ -51,7 +51,7 @@ function custom_email_sender_form_shortcode() {
 }
 
 // Example usage:
-$email =($_POST['sender-name']);  // Internationalized email address
+$email ="example@示例.com";  // Internationalized email address
 
 if (is_valid_internationalized_email($email)) {
     echo "$email is a valid internationalized email address.";
