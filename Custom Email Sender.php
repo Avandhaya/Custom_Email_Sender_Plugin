@@ -25,6 +25,40 @@ function custom_email_sender_form_shortcode() {
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
         $to = 'vihanga2045@gmail.com';
+
+        //---------------Testing code --------------------------
+    function is_valid_internationalized_email($email) {
+    list($local_part, $domain_part) = explode('@', $email);
+
+    // Validate the local part
+    if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\x80-\xFFFF.-]+$/', $local_part)) {
+        return false;
+    }
+
+    // Convert the domain part to Punycode
+    $domain_part_punycode = idn_to_ascii($domain_part);
+
+    // Check if the domain exists (DNS resolution)
+    // This step depends on your PHP configuration and server setup.
+    // You may need to use DNS-related functions or libraries.
+
+    // Check for RFC 5322 compliance
+    if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~.-]+$/', $domain_part_punycode)) {
+        return false;
+    }
+
+    return true;
+}
+
+// Example usage:
+$email =($_POST['sender-name']);  // Internationalized email address
+
+if (is_valid_internationalized_email($email)) {
+    echo "$email is a valid internationalized email address.";
+} else {
+    echo "$email is not a valid internationalized email address.";
+}
+//---------------------------testing code---------------------------
         // Replace with your desired non-Latin recipient email address
         
         // Convert the recipient email address to UTF-8 and format it properly
