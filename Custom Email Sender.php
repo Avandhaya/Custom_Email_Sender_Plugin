@@ -3,7 +3,6 @@
 Plugin Name: Custom Email Sender
 Description: Non-Latin Support Mail Plugin
 Version: 1.0
-Author: Your Name
 */
 
 // Enqueue necessary scripts and styles
@@ -26,7 +25,7 @@ function custom_email_sender_form_shortcode() {
         $message = sanitize_textarea_field($_POST['message']);
         $to = 'vihanga2045@gmail.com';
 
-        //---------------Testing code --------------------------
+        
     function is_valid_internationalized_email($email) {
     list($local_part, $domain_part) = explode('@', $email);
 
@@ -38,37 +37,23 @@ function custom_email_sender_form_shortcode() {
     // Convert the domain part to Punycode
     $domain_part_punycode = idn_to_ascii($domain_part);
 
-    // Check if the domain exists (DNS resolution)
-    // This step depends on your PHP configuration and server setup.
-    // You may need to use DNS-related functions or libraries.
-
     // Check for RFC 5322 compliance
     if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~.-]+$/', $domain_part_punycode)) {
         return false;
     }
 
     return true;
-}
+    }
 
-// Example usage:
-$email ="example@示例.com";  // Internationalized email address
+
+$email =$email; 
 
 if (is_valid_internationalized_email($email)) {
     echo "$email is a valid internationalized email address.";
 } else {
     echo "$email is not a valid internationalized email address.";
 }
-//---------------------------testing code---------------------------
-        // Replace with your desired non-Latin recipient email address
-        
-        // Convert the recipient email address to UTF-8 and format it properly
-       //$to_encoded = '=?UTF-8?B?' . base64_encode($to) . '?=';
 
-        //$to_encoded = mb_encode_mimeheader($sender_email, 'UTF-8', 'B');
-        
-       // Use quoted-printable encoding for sender's name and email address
-       // $sender_name_encoded = quoted_printable_encode($sender_name);
-        //$sender_email_encoded = quoted_printable_encode($sender_email);
 
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
@@ -80,13 +65,9 @@ if (is_valid_internationalized_email($email)) {
         //$email_content .= "Sender Email Address: $message\n";
         $email_content .= "Name:$sender_namea\n\n";
         $email_content .= "Message:\n$message";
+        
         // Send the email
-        // $sent = wp_mail($to_encoded, $subject, $message, $headers);
-        
-        
-        
-
-
+      
         $sent = wp_mail($to, $subject, $email_content, $message, $headers);
 
         if ($sent) {
