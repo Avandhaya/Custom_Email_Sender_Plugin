@@ -3,6 +3,7 @@
 Plugin Name: Custom Email Sender
 Description: Non-Latin Support Mail Plugin
 Version: 1.0
+Author: Your Name
 */
 
 // Enqueue necessary scripts and styles
@@ -113,7 +114,7 @@ function custom_email_sender_form_shortcode_s() {
         );
 
        // Create the email content
-        $email_content = "Email of sender: $sender_name\n\n";
+       $email_content = "Email of sender: $sender_name\n\n";
         //$email_content .= "Sender Email Address: $message\n";
         $email_content .= "Name:$sender_namea\n\n";
         $email_content .= "Message:\n$message";
@@ -163,8 +164,7 @@ else {
 }
         
 
-is_valid_internationalized_email("$sender_name");
-       
+    is_valid_internationalized_email("$sender_name");
     }
      
 
