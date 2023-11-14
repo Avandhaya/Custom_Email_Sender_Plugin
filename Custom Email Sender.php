@@ -119,16 +119,8 @@ function custom_email_sender_form_shortcode_s() {
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
         $to = 'vihanga2045@gmail.com';
+        
         // Replace with your desired non-Latin recipient email address
-        
-        // Convert the recipient email address to UTF-8 and format it properly
-       //$to_encoded = '=?UTF-8?B?' . base64_encode($to) . '?=';
-
-        //$to_encoded = mb_encode_mimeheader($sender_email, 'UTF-8', 'B');
-        
-       // Use quoted-printable encoding for sender's name and email address
-       // $sender_name_encoded = quoted_printable_encode($sender_name);
-        //$sender_email_encoded = quoted_printable_encode($sender_email);
 
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
