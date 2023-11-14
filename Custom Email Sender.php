@@ -3,7 +3,6 @@
 Plugin Name: Custom Email Sender
 Description: Non-Latin Support Mail Plugin
 Version: 1.0
-Author: Your Name
 */
 
 // Enqueue necessary scripts and styles
