@@ -23,37 +23,19 @@ function custom_email_sender_form_shortcode() {
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'vihanga2045@gmail.com';
-
+        $to = 'vihanga20.theekshana@gmail.com';
+        // Replace with your desired non-Latin recipient email address
         
-    function is_valid_internationalized_email($email) {
-    list($local_part, $domain_part) = explode('@', $email);
+        // Convert the recipient email address to UTF-8 and format it properly
+       //$to_encoded = '=?UTF-8?B?' . base64_encode($to) . '?=';
 
-    // Validate the local part
-    if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\x80-\xFFFF.-]+$/', $local_part)) {
-        return false;
-    }
-
-    // Convert the domain part to Punycode
-    $domain_part_punycode = idn_to_ascii($domain_part);
-
-    // Check for RFC 5322 compliance
-    if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~.-]+$/', $domain_part_punycode)) {
-        return false;
-    }
-
-    return true;
-    }
-
-
-$email =$email; 
-
-if (is_valid_internationalized_email($email)) {
-    echo "$email is a valid internationalized email address.";
-} else {
-    echo "$email is not a valid internationalized email address.";
-}
-
+        //$to_encoded = mb_encode_mimeheader($sender_email, 'UTF-8', 'B');
+        
+       // Use quoted-printable encoding for sender's name and email address
+       // $sender_name_encoded = quoted_printable_encode($sender_name);
+        //$sender_email_encoded = quoted_printable_encode($sender_email);
+        
+        
 
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
@@ -65,9 +47,13 @@ if (is_valid_internationalized_email($email)) {
         //$email_content .= "Sender Email Address: $message\n";
         $email_content .= "Name:$sender_namea\n\n";
         $email_content .= "Message:\n$message";
-        
         // Send the email
-      
+        // $sent = wp_mail($to_encoded, $subject, $message, $headers);
+        
+        
+        
+
+
         $sent = wp_mail($to, $subject, $email_content, $message, $headers);
 
         if ($sent) {
@@ -118,9 +104,8 @@ function custom_email_sender_form_shortcode_s() {
         $email = sanitize_email($_POST['email']);
         $subject = sanitize_text_field($_POST['subject']);
         $message = sanitize_textarea_field($_POST['message']);
-        $to = 'vihanga2045@gmail.com';
+        $to = 'vihanga20.theekshana@gmail.com';
         
-        // Replace with your desired non-Latin recipient email address
 
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
@@ -128,7 +113,7 @@ function custom_email_sender_form_shortcode_s() {
         );
 
        // Create the email content
-       $email_content = "Email of sender: $sender_name\n\n";
+        $email_content = "Email of sender: $sender_name\n\n";
         //$email_content .= "Sender Email Address: $message\n";
         $email_content .= "Name:$sender_namea\n\n";
         $email_content .= "Message:\n$message";
@@ -137,34 +122,69 @@ function custom_email_sender_form_shortcode_s() {
         
         
         
+        function is_valid_internationalized_email($email) {
+            list($local_part, $domain_part) = explode('@', $email);
+
+     // Validate the local part
+            if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~\x80-\xFFFF.-]+$/', $local_part)) {
+                return false;
+                }
+
+    // Convert the domain part to Punycode
+            $domain_part_punycode = idn_to_ascii($domain_part);
+
+    // Check for RFC 5322 compliance
+            if (!preg_match('/^[a-zA-Z0-9!#$%&\'*+\/=?^_`{|}~.-]+$/', $domain_part_punycode)) {
+            return false;
+            }
+
+    return true;
+    }
 
 
-        $sent = wp_mail($to, $subject, $email_content, $message, $headers);
+
+
+if (is_valid_internationalized_email($sender_name)) {
+     $sent = wp_mail($to, $subject, $email_content, $message, $headers);
 
         if ($sent) {
+            // Clear form fields
+            $sender_namea = '';
+            $subject = '';
+            $message = '';
             echo '<div class="email-success">Email sent successfully!</div>';
         } else {
             echo '<div class="email-error">Email sending failed. Please try again.</div>';
         }
+    
+} 
+else {
+    echo '<div class="email-error">Email is not a valid email address.</div>';
+}
+        
+
+is_valid_internationalized_email("$sender_name");
+       
     }
+     
 
     // Display the email form
     ?>
     <div class="email-form">
-        <h4>ඔබගේ විමසීම් අප වෙත යොමු කරන්න</h4>
+        <h4>ඔබගේ විමසීම් අප වෙත යොමු කරන්න </h4>
         <form method="post" accept-charset="UTF-8">
             <label for="sender-namea">ඔබගේ නම:</label>
-            <input type="text" name="sender-namea" required><br>
+            <input type="text" name="sender-namea" value="<?php echo $sender_namea ; ?>" required><br>
             
             <label for="sender-name">විද්‍යුත් තැපැල් ලිපිනය:</label>
-            <input type="text" name="sender-name" required><br>
+            <input type="text" name="sender-name"  required><br>
             
 
             <label for="subject">අදාල පණිවිඩයෙහි විෂය:</label>
-            <input type="text" name="subject" required><br>
+            <input type="text" name="subject" value="<?php echo $subject ; ?>" required><br>
 
             <label for="message">පණිවිඩය:</label>
-            <textarea name="message" rows="4" required></textarea><br>
+            <textarea name="message" rows="4"  required><?php echo $message ; ?></textarea><br>
 
             <input type="submit" name="custom-email-submit" value="විද්‍යුත් තැපැලය යොමු කරන්න">
         </form>
